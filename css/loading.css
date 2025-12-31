@@ -1,78 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>Esper DNA Loader</title>
-<style>
 body {
   margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#0d0d0f;
-  overflow:hidden;
+  padding:0;
+  overflow-x:hidden;
 }
-
-/* Loader container */
-.esper-loader {
-  position:relative;
-  width:260px;   /* enlarged circle */
-  height:260px;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-
-/* Outer glowing ring */
-.esper-loader::before {
+body:before {
   content:"";
   position:absolute;
-  inset:0;
-  border-radius:50%;
-  border:3px solid rgba(120,255,200,0.6);
-  box-shadow:0 0 20px #38f5a2, inset 0 0 30px rgba(120,255,200,0.3);
-  animation: spin 6s linear infinite;
-}
-
-/* Inner pulsating aura (white glow, low transparency) */
-.esper-loader::after {
-  content:"";
-  position:absolute;
-  width:140px;   /* larger inner glow */
-  height:140px;
-  border-radius:50%;
-  background:radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-/* Rotating sigil ring */
-.sigils {
-  position:absolute;
+  top:0;
+  left:0;
   width:100%;
   height:100%;
-  border-radius:50%;
-  border:2px dashed rgba(213,201,153,0.4);
-  animation: spin 10s linear infinite reverse;
+  background:#232428;
+  background-image: url('https://preview.redd.it/ignore-dis-v0-v6vs0sxre2cf1.png?width=640&crop=smart&auto=webp&s=af3b6947645a900da2bb19d11a2503133217d385');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 }
 
-/* Center text */
-.text {
+#indicator {
   position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:260px;   /* larger circle */
+  height:260px;
+  background:transparent;
+  border:3px solid #3c3c3c;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
   font-family:'Orbitron', sans-serif;
-  font-size:18px;   /* larger font for one line */
   color:#d5c999;
   letter-spacing:3px;
   text-transform:uppercase;
-  text-shadow:0 0 8px #38f5a2;
-  white-space:nowrap; /* force one line */
+  text-shadow:0 0 10px #38f5a2;
+  box-shadow:0 0 20px rgba(0,0,0,.5);
+}
+
+/* Outer rotating ring */
+#indicator:before {
+  content:"";
+  position:absolute;
+  top:-3px;
+  left:-3px;
+  width:104%;
+  height:104%;
+  border:3px solid transparent;
+  border-top:3px solid #d5c999;
+  border-right:3px solid #d5c999;
+  border-radius:50%;
+  animation:spin 2s linear infinite;
+}
+
+/* Inner white glow */
+#indicator:after {
+  content:"";
+  position:absolute;
+  width:140px;
+  height:140px;
+  border-radius:50%;
+  background:radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%);
+  animation:pulse 2s ease-in-out infinite;
+}
+
+/* Text inside indicator */
+#indicator .text {
+  font-size:18px;
+  white-space:nowrap;
 }
 
 /* Flickering underscore */
-.text::after {
+#indicator .text::after {
   content:"_";
-  animation: blink 1s steps(1) infinite;
+  animation:blink 1s steps(1) infinite;
 }
 
 /* Animations */
@@ -87,14 +89,3 @@ body {
   0%,50% { opacity:1; }
   51%,100% { opacity:0; }
 }
-</style>
-<!-- Futuristic font -->
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="esper-loader">
-    <div class="sigils"></div>
-    <div class="text">Analysing DNA</div>
-  </div>
-</body>
-</html>
