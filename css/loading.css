@@ -1,90 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
 body {
-	margin:0;
-	padding:0;
-	overflow-x:hidden;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #232428;
+    /* Keeping your background image logic */
+    background-image: url('https://preview.redd.it/ignore-dis-v0-v6vs0sxre2cf1.png?width=640&crop=smart&auto=webp&s=af3b6947645a900da2bb19d11a2503133217d385');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
 }
-body:before {
-	content:"";
-	position:absolute;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	background:#232428;
-	background-image: url('https://preview.redd.it/ignore-dis-v0-v6vs0sxre2cf1.png?width=640&crop=smart&auto=webp&s=af3b6947645a900da2bb19d11a2503133217d385');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+
+/* Container for the DNA and Text */
+.loader-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
 }
-.ind1 {
-	padding-top:5px;
-	font-size:18px;
+
+/* The DNA Container */
+.dna {
+    position: relative;
+    width: 100px;
+    height: 160px;
+    transform-style: preserve-3d;
+    perspective: 500px;
 }
-.ind2 {
-	padding-top:5px;
-	font-size:18px;
+
+/* Individual Rungs of the DNA */
+.ele {
+    position: relative;
+    width: 100%;
+    height: 12px;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transform-style: preserve-3d;
+    /* This creates the spiral twist */
+    animation: rotateDNA 3s ease-in-out infinite;
 }
-.ind3 {
-	padding-top:10px;
-	font-size:16px;
-	line-height:25px;
+
+/* The "Nucleotides" (Dots) */
+.ele::before, .ele::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: #d5c999;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #38f5a2;
 }
-#indicator {
-	position:absolute;
-	top:50%;
-	left:50%;
-	padding-left:2px;
-	transform:translate(-50%,-50%);
-	width:150px;
-	height:150px;
-	background:transparent;
-	border:3px solid #3c3c3c;
-	border-radius:50%;
-	display:flex;
-	flex-direction:column;
-	align-items:center;
-	justify-content:center;
-	text-align:center;
-	font-family:sans-serif;
-	color:#d5c999;
-	letter-spacing:3px;
-	text-transform:uppercase;
-	text-shadow:0 0 10px #38f5a2;
-	box-shadow:0 0 20px rgba(0,0,0,.5);
+
+/* The "Base Pair" (Connecting Line) */
+.ele::before {
+    content: "";
+    position: absolute;
+    left: 5px;
+    right: 5px;
+    height: 2px;
+    background: rgba(213, 201, 153, 0.3);
+    z-index: -1;
 }
-#indicator:before {
-	content:"";
-	position:absolute;
-	top:-3px;
-	left:-3px;
-	width:104%;
-	height:104%;
-	border:3px solid transparent;
-	border-top:3px solid #d5c999;
-	border-right:3px solid #d5c999;
-	border-radius:50%;
-	animation:animateC 2s linear infinite;
+
+/* Staggering the animation for each rung to create the helix */
+.ele:nth-child(1) { animation-delay: 0.1s; }
+.ele:nth-child(2) { animation-delay: 0.2s; }
+.ele:nth-child(3) { animation-delay: 0.3s; }
+.ele:nth-child(4) { animation-delay: 0.4s; }
+.ele:nth-child(5) { animation-delay: 0.5s; }
+.ele:nth-child(6) { animation-delay: 0.6s; }
+.ele:nth-child(7) { animation-delay: 0.7s; }
+.ele:nth-child(8) { animation-delay: 0.8s; }
+.ele:nth-child(9) { animation-delay: 0.9s; }
+.ele:nth-child(10) { animation-delay: 1.0s; }
+
+@keyframes rotateDNA {
+    0%, 100% { transform: rotateY(0deg); }
+    50% { transform: rotateY(180deg); }
 }
-#indicator > div {
-	max-width:120px;
+
+/* Loading Text Styling */
+.loading-text {
+    color: #d5c999;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    text-shadow: 0 0 10px #38f5a2;
+    font-size: 18px;
+    font-weight: bold;
 }
-#lm {
-	opacity:0;
-	transition:opacity 0.5s;
-}
-@keyframes animateC {
-	0% {
-		transform:rotate(0deg);
-	}
-	100% {
-		transform:rotate(360deg);
-	}
-}
-@keyframes animate {
-	0% {
-		transform:rotate(45deg);
-	}
-	100% {
-		transform:rotate(405deg);
-	}
-}
+</style>
+</head>
+<body>
+
+<div class="loader-wrapper">
+    <div class="dna">
+        <div class="ele"></div>
+        <div class="ele"></div>
+        <div class="ele"></div>
+        <div class="ele"></div>
+        <div class="ele"></div>
+        <div class="ele"></div>
+        <div class="ele"></div>
+        <div class="ele"></div>
+        <div class="ele"></div>
+        <div class="ele"></div>
+    </div>
+    <div class="loading-text">Sequencing...</div>
+</div>
+
+</body>
+</html>
